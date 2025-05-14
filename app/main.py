@@ -15,3 +15,4 @@ def copy_file(command: str) -> None:
     except FileNotFoundError:
         # Не існує джерельного файлу — нічого не робимо
         return
+n
