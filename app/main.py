@@ -5,7 +5,6 @@ def copy_file(command: str) -> None:
         return
 
     _, src, dst = parts
-
     if src == dst:
         return
 
