@@ -1,17 +1,16 @@
-def copy_file(command: str) -> None:
+def copy_file(command: str):
     parts = command.split()
 
-    if len(parts) != 3 or parts[0] != "cp":
-        return
+    if parts[:1] != ["cp"] or len(parts) != 3:
+        return  # Невірна команда
 
-    _, source_filename, target_filename = parts
+    _, source_file, target_file = parts
 
-    if source_filename == target_filename:
-        return
+    if source_file == target_file:
+        return  # Не копіюємо файл у самого себе
 
     try:
-        with (open(source_filename, "rb") as file_in,
-              open(target_filename, "wb") as file_out):
-            file_out.write(file_in.read())
+        with open(source_file, "rb") as src_file, open(target_file, "wb") as dst_file:
+            dst_file.write(src_file.read())
     except FileNotFoundError:
-        return
+        pass  # Якщо немає джерельного файлу — нічого не робимо
